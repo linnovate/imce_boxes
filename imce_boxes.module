@@ -1,0 +1,42 @@
+<?php
+function imce_boxes_init() {
+   drupal_add_js(drupal_get_path('module', 'imce_boxes') . '/imce_boxes.js');
+}
+
+/**
+ * Implementation of hook_ctools_plugin_api().
+ */
+function imce_boxes_ctools_plugin_api($module, $api) {
+  if ($module == 'boxes' && $api == 'plugins') {
+    return array('version' => 1);
+  }
+}
+
+/**
+ * Implementation of hook_ctools_plugin_plugins().
+ */
+function imce_boxes_ctools_plugin_plugins() {
+  return array(
+    'cache' => TRUE,
+    'use hooks' => TRUE,
+  );
+}
+
+/**
+ * Implementation of hook_boxes_plugins().
+ */
+function imce_boxes_boxes_plugins() {
+  $info = array();
+  $path = drupal_get_path('module', 'imce_boxes') .'/boxes_plugins';
+  
+  $info['imce_box'] = array(
+    'title' => 'Imce Box',
+    'handler' => array(
+      'parent' => 'box',
+      'class' => 'imce_boxes',
+      'file' => 'imce_boxes.inc',
+      'path' => $path,
+    ),
+  );
+  return $info;
+}

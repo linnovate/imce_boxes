@@ -1,0 +1,4 @@
+name = "Imce boxes"
+description = "added a box with imce image field"
+dependencies[] =  imce
+core = 6.x
