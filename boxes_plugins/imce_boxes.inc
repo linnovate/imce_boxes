@@ -42,12 +42,10 @@ class imce_boxes extends boxes_box {
     $block['title'] = $title;
     $block['subject'] = NULL;
     $block['delta'] = $this->delta;
-    $link_options = array(
-      'html' => TRUE,
-    );
+    $link_options = array('html' => TRUE);
     
     $image_path = substr($this->options['imce_image_path'], strlen(base_path()));//$this->options['imce_image_path'];
-    $image = '<img src="' . base_path() . $image_path . '" alt="' . $title . '" title="' . $title . '" />';
+    $image = theme_image($image_path, $title, $title);//'<img src="' . base_path() . $image_path . '" alt="' . $title . '" title="' . $title . '" />';
     $block['content'] .= l($image, $this->options['link_url'], $link_options);
     return $block;
   }
